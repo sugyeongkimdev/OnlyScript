@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 //=========================================================//
 // idea https://github.com/modesttree/Zenject
@@ -10,9 +11,11 @@ using System.Linq;
 
 //=========================================================//
 // 매니저 어트리뷰트, 자동 생성 및 싱글톤으로 관리됨
+// 제한 조건 : public으로만 주입
 [AttributeUsage (AttributeTargets.Field)] public class ManagerAttribute : Attribute { }
 
 // 싱글 어트리뷰트, 매니저와 같이 싱글톤으로 관리됨
+// 제한조건 : 아마도 public으로만 주입, 사용할 때 테스트 해야함
 [AttributeUsage (AttributeTargets.Field)] public class SingleAttribute : Attribute { }
 
 //=========================================================//
@@ -50,7 +53,6 @@ public static class FakeZenject
     public static T Inject<T> (this T injectTarget) where T : class, new()
     {
         Type attType = typeof (ManagerAttribute);    // 속성 타입
-        Type baseType = typeof (BaseManager);       // 기본 매니저 타입
 
         // 해당하는 필드를 찾고
         // 해당하는 어트리뷰트 타입을 찾은 뒤 분류에 따라 실행

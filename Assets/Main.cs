@@ -32,7 +32,9 @@ public class Main : MonoBehaviour
     // 자주 사용하는 데이터 바인드
     private void ManagerDataBind ()
     {
-        new GameObject ("MainCamera").AddComponent<Camera> ().Bind (); // 메인 카메라 바인드
+        var cam = new GameObject ("MainCamera").AddT<Camera>().Bind (); // 메인 카메라
+        cam.transform.position = new Vector3(0, 0, -10f);
+
     }
 
     //=========================================================//

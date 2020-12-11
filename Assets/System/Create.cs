@@ -7,14 +7,24 @@ public static class Create
 {
 
 
+    // 기본
+    public static T AddT<T> (this GameObject go) where T : Component
+    {
+        return go.AddComponent<T> ();
+    }
+    public static T AddT<T> (this Component component) where T : Component
+    {
+        return component.gameObject.AddComponent<T> ();
+    }
 
-    public static GameObject Add<T> (this GameObject go) where T : Component
+    // 확장
+    public static GameObject AddG<T> (this GameObject go) where T : Component
     {
         return go.AddComponent<T> ().gameObject;
     }
-    public static GameObject Add<T> (this T component) where T : Component
+    public static GameObject AddG<T> (this Component component) where T : Component
     {
-        return component.gameObject.Add<T> ();
+        return component.gameObject.AddComponent<T>().gameObject;
     }
 
 
