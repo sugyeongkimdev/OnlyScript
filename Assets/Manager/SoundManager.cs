@@ -8,14 +8,8 @@ using UnityEngine;
 // audio asset은 사용하지 못하므로 코드로 소리를 만들어내야 함
 // PCM
 
-public class SoundManager : BaseManager
+public class SoundManager : BaseManager<SoundManager>
 {
-
-    //=========================================================//
-
-    [Manager] public AssetManager asset;
-
-
     //=========================================================//
 
     public GameObject managerGo;
@@ -34,7 +28,7 @@ public class SoundManager : BaseManager
 
     //=========================================================//
 
-    public override BaseManager Init ()
+    public override SoundManager Init ()
     {
         this.Inject ();
 
@@ -54,7 +48,7 @@ public class SoundManager : BaseManager
         audioLine.startWidth = 0.01f;
         audioLine.endWidth = 0.01f;
 
-        audioLine.material = asset.GetDefaultAsset<Material>(AssetManager.DEFAULT_MAT_LINE);
+        audioLine.material = Asset.GetDefaultAsset<Material>(Asset.DEFAULT_MAT_LINE);
         var pos = data.Select ((d, i) => new Vector3 (i/ (samplerate/100f), d)).ToArray();
         audioLine.SetPositions (pos);
 

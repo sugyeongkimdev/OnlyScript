@@ -1,9 +1,9 @@
-﻿public abstract class BaseManager 
+﻿public abstract class BaseManager<T> where T : class, new()
 {
+    public static T instasnce;
 
-    public static BaseManager instasnce;
-    public virtual BaseManager Init ()
+    public virtual T Init ()
     {
-        return this;
+        return instasnce;
     }
 }

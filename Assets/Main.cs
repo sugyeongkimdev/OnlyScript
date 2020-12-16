@@ -17,25 +17,17 @@ public class Main : MonoBehaviour
     //=========================================================//
 
     [Manager] public SoundManager sound;
-    //[Single] public Camera cam;
+    [Single] public Camera cam;
 
 
     private void Init ()
     {
         this.Inject ();
 
-        Console.Beep (5000,1000);
-
-        ManagerDataBind ();
-    }
-
-    // 자주 사용하는 데이터 바인드
-    private void ManagerDataBind ()
-    {
-        var cam = new GameObject ("MainCamera").AddT<Camera>().Bind (); // 메인 카메라
-        cam.transform.position = new Vector3(0, 0, -10f);
+        Create.Camera ().Bind ();
 
     }
+
 
     //=========================================================//
 
